@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { LogOut } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -11,27 +12,29 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={{ background: '#1e293b', padding: '0.75rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-      <Link to="/" style={{ color: '#fff', fontWeight: 600, textDecoration: 'none', fontSize: '1.1rem' }}>
-        JobTracker
-      </Link>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        {user ? (
-          <>
-            <Link to="/dashboard" style={{ color: '#94a3b8', textDecoration: 'none' }}>Dashboard</Link>
-            <Link to="/jobs" style={{ color: '#94a3b8', textDecoration: 'none' }}>Applications</Link>
-            <span style={{ color: '#64748b' }}>|</span>
-            <span style={{ color: '#94a3b8', fontSize: '0.9rem' }}>{user.name}</span>
-            <button onClick={handleLogout} style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '4px', cursor: 'pointer' }}>
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" style={{ color: '#94a3b8', textDecoration: 'none' }}>Login</Link>
-            <Link to="/register" style={{ color: '#94a3b8', textDecoration: 'none' }}>Register</Link>
-          </>
-        )}
+    <nav style={{ background: 'var(--nav-bg)', color: 'var(--nav-text)', padding: '1rem 0', marginBottom: '2rem' }}>
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Link to="/" style={{ color: 'var(--nav-text)', fontWeight: 700, textDecoration: 'none', fontSize: '1.2rem' }}>
+          JobTracker
+        </Link>
+        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+          {user ? (
+            <>
+              <Link to="/dashboard" style={{ color: 'var(--border-color)' }}>Dashboard</Link>
+              <Link to="/jobs" style={{ color: 'var(--border-color)' }}>Applications</Link>
+              <span style={{ color: 'var(--border-color)', opacity: 0.5 }}>|</span>
+              <span style={{ fontSize: '0.9rem' }}>{user.name}</span>
+              <button onClick={handleLogout} className="btn btn-danger" style={{ padding: '0.4rem 0.8rem' }}>
+                <LogOut size={16} />
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" style={{ color: 'var(--nav-text)' }}>Login</Link>
+              <Link to="/register" style={{ color: 'var(--nav-text)' }}>Register</Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

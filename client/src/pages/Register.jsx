@@ -19,21 +19,20 @@ const Register = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '4rem auto' }}>
+    <div className="card" style={{ maxWidth: '400px', margin: '4rem auto' }}>
       <h2>Register</h2>
       {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <input placeholder="Full Name" required value={form.name}
           onChange={e => setForm({ ...form, name: e.target.value })}
-          style={{ padding: '0.6rem', border: '1px solid #ccc', borderRadius: '4px' }} />
+          className="input-field" />
         <input type="email" placeholder="Email" required value={form.email}
           onChange={e => setForm({ ...form, email: e.target.value })}
-          style={{ padding: '0.6rem', border: '1px solid #ccc', borderRadius: '4px' }} />
+          className="input-field" />
         <input type="password" placeholder="Password (min 6 chars)" required value={form.password}
           onChange={e => setForm({ ...form, password: e.target.value })}
-          style={{ padding: '0.6rem', border: '1px solid #ccc', borderRadius: '4px' }} />
-        <button type="submit"
-          style={{ padding: '0.7rem', background: '#10b981', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+          className="input-field" />
+        <button type="submit" className="btn btn-primary" style={{ background: '#10b981', justifyContent: 'center' }}>
           Register
         </button>
       </form>

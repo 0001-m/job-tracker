@@ -5,6 +5,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend
 } from 'recharts';
+import { Calendar } from 'lucide-react';
 
 const STATUS_COLORS = {
   Applied: '#3b82f6',
@@ -41,17 +42,16 @@ const Dashboard = () => {
       {/* Stats cards */}
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', margin: '1.5rem 0' }}>
         {[
-          { label: 'Total Applications', value: stats.total, color: '#3b82f6' },
+          { label: 'Total Applications', value: stats.total, color: 'var(--primary-color)' },
           { label: 'Response Rate', value: `${stats.responseRate}%`, color: '#10b981' },
           { label: 'Follow-ups This Week', value: stats.followUps.length, color: '#f59e0b' }
         ].map(card => (
-          <div key={card.label} style={{
-            background: card.color, color: '#fff',
-            padding: '1.2rem 1.8rem', borderRadius: '8px',
-            minWidth: '180px', textAlign: 'center'
+          <div key={card.label} className="card" style={{
+            borderTop: `4px solid ${card.color}`,
+            minWidth: '180px', textAlign: 'center', flex: 1, padding: '1.5rem'
           }}>
-            <div style={{ fontSize: '2rem', fontWeight: 700 }}>{card.value}</div>
-            <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>{card.label}</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, color: card.color }}>{card.value}</div>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>{card.label}</div>
           </div>
         ))}
       </div>
@@ -89,15 +89,19 @@ const Dashboard = () => {
       {/* Follow-up reminders */}
       {stats.followUps.length > 0 && (
         <div style={{ marginTop: '2rem' }}>
-          <h3>📅 Follow-ups Due This Week</h3>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Calendar size={20} className="text-primary" /> Follow-ups Due This Week
+          </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {stats.followUps.map(j => (
-              <div key={j._id} style={{
-                background: '#fef3c7', border: '1px solid #fbbf24',
-                borderRadius: '6px', padding: '0.75rem 1rem'
+              <div key={j._id} className="card" style={{
+                borderLeft: '4px solid #f59e0b',
+                padding: '0.75rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'
               }}>
-                <strong>{j.company}</strong> — {j.role} &nbsp;
-                <span style={{ color: '#92400e', fontSize: '0.85rem' }}>
+                <div>
+                  <strong>{j.company}</strong> — {j.role}
+                </div>
+                <span style={{ color: '#d97706', fontSize: '0.85rem', fontWeight: 500 }}>
                   Due: {new Date(j.followUpDate).toLocaleDateString()}
                 </span>
               </div>

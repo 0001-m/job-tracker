@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '4rem auto' }}>
+    <div className="card" style={{ maxWidth: '400px', margin: '4rem auto' }}>
       <h2>Login</h2>
       {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -32,16 +32,15 @@ const Login = () => {
           type="email" placeholder="Email" required
           value={form.email}
           onChange={e => setForm({ ...form, email: e.target.value })}
-          style={{ padding: '0.6rem', border: '1px solid #ccc', borderRadius: '4px' }}
+          className="input-field"
         />
         <input
           type="password" placeholder="Password" required
           value={form.password}
           onChange={e => setForm({ ...form, password: e.target.value })}
-          style={{ padding: '0.6rem', border: '1px solid #ccc', borderRadius: '4px' }}
+          className="input-field"
         />
-        <button type="submit" disabled={loading}
-          style={{ padding: '0.7rem', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+        <button type="submit" disabled={loading} className="btn btn-primary" style={{ justifyContent: 'center' }}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>

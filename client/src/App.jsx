@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
 import { AuthProvider } from './context/AuthContext';
 import { JobProvider } from './context/JobContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -13,8 +14,11 @@ function App() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    document.body.style.background = dark ? '#0f172a' : '#ffffff';
-    document.body.style.color = dark ? '#e2e8f0' : '#1e293b';
+    if (dark) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
   }, [dark]);
 
   return (
@@ -22,7 +26,7 @@ function App() {
       <AuthProvider>
         <JobProvider>
           <Navbar />
-          <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1rem' }}>
+          <div className="container">
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/login" element={<Login />} />
@@ -35,8 +39,11 @@ function App() {
               } />
             </Routes>
           </div>
-          <button onClick={() => setDark(d => !d)} style={{ position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.5rem', borderRadius: '50%', border: 'none', cursor: 'pointer', fontSize: '1.2rem' }}>
-            {dark ? '☀️' : '🌙'}
+          <button 
+            onClick={() => setDark(d => !d)} 
+            style={{ position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.6rem', borderRadius: '50%', border: 'none', cursor: 'pointer', background: 'var(--card-bg)', color: 'var(--text-color)', boxShadow: '0 2px 5px rgba(0,0,0,0.2)', display: 'flex' }}
+          >
+            {dark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </JobProvider>
       </AuthProvider>
