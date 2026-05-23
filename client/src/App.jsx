@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { JobProvider } from './context/JobContext';
@@ -9,6 +10,13 @@ import Dashboard from './pages/Dashboard';
 import Jobs from './pages/Jobs';
 
 function App() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.body.style.background = dark ? '#0f172a' : '#ffffff';
+    document.body.style.color = dark ? '#e2e8f0' : '#1e293b';
+  }, [dark]);
+
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -27,6 +35,9 @@ function App() {
               } />
             </Routes>
           </div>
+          <button onClick={() => setDark(d => !d)} style={{ position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.5rem', borderRadius: '50%', border: 'none', cursor: 'pointer', fontSize: '1.2rem' }}>
+            {dark ? '☀️' : '🌙'}
+          </button>
         </JobProvider>
       </AuthProvider>
     </BrowserRouter>
