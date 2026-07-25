@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --bg-color: #f8fafc;
@@ -45,7 +45,7 @@ a {
   padding: 0 1rem;
 }
 
-/* Cards & Forms */
+
 .card {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -91,7 +91,7 @@ a {
   color: var(--text-color);
 }
 
-/* Tables */
+
 .table-wrapper {
   overflow-x: auto;
   background-color: var(--card-bg);
@@ -117,4 +117,4 @@ th {
 
 body.dark th {
   background-color: rgba(255,255,255,0.02);
-}
+} */
